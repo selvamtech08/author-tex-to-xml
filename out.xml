@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<author-group>
+  <!--author and affiliation elements-->
+  <author id="1" aff-id="1">
+    <author-name>
+      <name>Author 1</name>
+    </author-name>
+    <contact>
+      <mail>author1@test.com</mail>
+      <mail>author01@test.com</mail>
+      <phone>+91-0000-0000-000</phone>
+      <url>author1.com</url>
+    </contact>
+    <note>corresponding author</note>
+  </author>
+  <author id="2" aff-id="2">
+    <author-name>
+      <name>Author 单</name>
+    </author-name>
+    <contact>
+      <mail>author2@test.com</mail>
+      <phone>+91-0000-0000-000</phone>
+      <url>author2.com</url>
+    </contact>
+    <note>equally contributed</note>
+  </author>
+  <affil id="1">
+    <org-div>Organization</org-div>
+    <org-name>Department</org-name>
+    <address>
+      <street>1st street</street>
+      <landmark>near railway stand</landmark>
+      <pincode>00000000</pincode>
+      <postbox>box. 1</postbox>
+      <city>City</city>
+      <state>State</state>
+      <country>Country</country>
+    </address>
+  </affil>
+</author-group>

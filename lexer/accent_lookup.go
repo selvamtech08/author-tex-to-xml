@@ -1,0 +1,161 @@
+package lexer
+
+type Accent map[rune]rune
+
+// TODO: full mapping
+var accents = map[byte]map[rune]rune{
+	'`': Accent{
+		'A': '\u00C0',
+		'E': '\u00C8',
+		'I': '\u00CC',
+		'U': '\u00D9',
+		'a': '\u00E0',
+		'e': '\u00E8',
+		'i': '\u00EC',
+		'o': '\u00F2',
+	},
+	'\'': Accent{
+		'A': '\u00C1',
+		'E': '\u00C9',
+		'I': '\u00CF',
+		'O': '\u00DC',
+		'U': '\u00DA',
+		'Y': '\u00DD',
+		'a': '\u00E1',
+		'e': '\u00E9',
+		'i': '\u00ED',
+		'o': '\u00F3',
+		'u': '\u00FA',
+		'y': '\u00FD',
+		'C': '\u0106',
+		'c': '\u0107',
+		'n': '\u0144',
+		'R': '\u0154',
+		'r': '\u0155',
+		'S': '\u015A',
+		's': '\u015B',
+		'Z': '\u0179',
+		'z': '\u017A',
+	},
+	'~': Accent{
+		'A': '\u00C3',
+		'N': '\u00D1',
+		'O': '\u00D5',
+		'a': '\u00E3',
+		'n': '\u00F1',
+		'o': '\u00F5',
+	},
+	'^': Accent{
+		'A': '\u00C2',
+		'E': '\u00CA',
+		'I': '\u00CE',
+		'O': '\u00D4',
+		'U': '\u00DB',
+		'a': '\u00E2',
+		'e': '\u00EA',
+		'i': '\u00EE',
+		'o': '\u00F4',
+		'u': '\u00FB',
+		'C': '\u0108',
+		'c': '\u0109',
+		'G': '\u011C',
+		'g': '\u011D',
+		'H': '\u0124',
+		'h': '\u0125',
+		'J': '\u0134',
+		'j': '\u0135',
+		'S': '\u015C',
+		's': '\u015D',
+		'W': '\u0174',
+		'w': '\u0175',
+		'Y': '\u0176',
+		'y': '\u0177',
+	},
+	'"': Accent{
+		'A': '\u00C4',
+		'E': '\u00CB',
+		'I': '\u00CF',
+		'O': '\u00D6',
+		'U': '\u00DC',
+		'a': '\u00E4',
+		'e': '\u00EB',
+		'i': '\u00EF',
+		'o': '\u00F6',
+		'u': '\u00FC',
+		'y': '\u00FF',
+	},
+	'=': Accent{
+		'A': '\u0100',
+		'a': '\u0101',
+		'E': '\u0112',
+		'e': '\u0113',
+		'I': '\u012A',
+		'i': '\u012B',
+		'O': '\u014C',
+		'o': '\u014D',
+		'U': '\u016A',
+		'u': '\u016B',
+	},
+	'u': Accent{
+		'A': '\u0102',
+		'a': '\u0103',
+		'E': '\u0114',
+		'e': '\u0115',
+		'G': '\u011E',
+		'g': '\u011F',
+		'I': '\u012C',
+		'i': '\u012D',
+		'O': '\u014E',
+		'o': '\u014F',
+		'U': '\u016C',
+		'u': '\u016D',
+	},
+	// TODO:
+	'c': Accent{},
+	'v': Accent{
+		'C': '\u010C',
+		'c': '\u010D',
+		'D': '\u010E',
+		'd': '\u010F',
+		'E': '\u011A',
+		'e': '\u011B',
+		'N': '\u0147',
+		'n': '\u0148',
+		'R': '\u0158',
+		'r': '\u0159',
+		'S': '\u0160',
+		's': '\u0161',
+		'T': '\u0164',
+		't': '\u0165',
+		'Z': '\u017D',
+		'z': '\u017C',
+	},
+	'.': Accent{
+		'C': '\u010A',
+		'c': '\u010B',
+		'E': '\u0116',
+		'e': '\u0117',
+		'G': '\u0120',
+		'g': '\u0121',
+		'I': '\u0130',
+		'i': '\u0131',
+		'L': '\u013F',
+		'l': '\u0140',
+		'Z': '\u017B',
+		'z': '\u017C',
+	},
+}
+
+// check the current char with accept table and return unicode format
+// if not exist then replacement unicode will be returned
+func checkAccent(accent byte, letter rune) rune {
+	value, exist := accents[accent]
+	if exist {
+		unicode, ok := value[letter]
+		if ok {
+			return unicode
+		}
+	}
+	// TODO: error should be added
+	return '\uFFFD'
+}
